@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import ThemeSwitcher from "./ThemeSwitcher";
 import ThProvider from "./ThProvider";
+import Link from "next/link";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,11 +25,14 @@ export default function RootLayout({ children }) {
     <html lang="en" className="light" style={{ colorScheme: "light" }}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        style={{backgroundImage:`url('/background.jpg')`}}
+        
       >
          <ThProvider>
-         <ThemeSwitcher  />
+         {/* <ThemeSwitcher  /> */}
         {children}
          </ThProvider>
+        
       </body>
     </html>
   );

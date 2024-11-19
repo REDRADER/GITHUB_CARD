@@ -16,12 +16,13 @@ const Card = ({ data }) => {
 
 
     return (
-        <div className='bg-[--gradient-background] w-full flex flex-col mt-8 p-5 border border-[--border-color] rounded-md gap-5 max-w-[450px] relative' style={{boxShadow:"var(--shadow)",backfaceVisibility:"hidden",backdropFilter:"blur(24px)"}}>
+        <div className='bg-[--gradient-background] w-full flex flex-col  p-5 border border-[--border-color] rounded-md gap-5 max-w-[450px] relative' style={{boxShadow:"var(--shadow)",backfaceVisibility:"hidden",backdropFilter:"blur(24px)"}}>
             <div className='absolute top-0 right-0 h-[40px] w-[40px] flex justify-center items-center bg-[--foreground] print-hide rounded-[0_0_0_10px]' onClick={()=>window.print()}>
             <ArrowDown className='text-[--background]' />
 
             </div>
-            <div className='w-full flex items-center justify-center gap-0 relative pb-[10px] before:absolute before:top-[100%] before:h-[1px] before:w-full before:bg-white'>
+            
+            <div className='w-full flex items-center justify-center gap-0 relative pb-[10px] before:absolute before:top-[100%] before:h-[1px] before:w-full before:bg-[--foreground]'>
                 <span className='w-[30px] md:w-[50px] h-[30px] md:h-[50px]'>
 
                     <Github className='w-full h-full' />
