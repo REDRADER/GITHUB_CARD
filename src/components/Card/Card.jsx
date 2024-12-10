@@ -1,10 +1,32 @@
+"use client"
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { useCallback, useRef } from 'react';
+import { toPng,toJpeg } from 'html-to-image';
 import Barcode from 'react-barcode';
 import { Github,ArrowDown } from 'lucide-react';
 
 const Card = ({ data }) => {
+
+    const ref=useRef();
+
+    const onButtonClick = useCallback(() => {
+        if (ref.current === null) {
+          return
+        }
+    
+        toJpeg(ref.current, { cacheBust: true, })
+          .then((dataUrl) => {
+            const link = document.createElement('a')
+            link.download = data.name
+            link.href = dataUrl
+            link.click()
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+      }, [ref])
+
    
 
     const admissionDate = new Date(data.created_at); 
@@ -16,8 +38,8 @@ const Card = ({ data }) => {
 
 
     return (
-        <div className='bg-[--gradient-background] w-full flex flex-col  p-5 border border-[--border-color] rounded-md gap-5 max-w-[450px] relative' style={{boxShadow:"var(--shadow)",backfaceVisibility:"hidden",backdropFilter:"blur(24px)"}}>
-            <div className='absolute top-0 right-0 h-[40px] w-[40px] flex justify-center items-center bg-[--foreground] print-hide rounded-[0_0_0_10px]' onClick={()=>window.print()}>
+        <div ref={ref} className=' bg-white w-full flex flex-col  p-5 border border-[--border-color] rounded-md gap-5 max-w-[450px] relative' style={{boxShadow:"var(--shadow)",backfaceVisibility:"hidden",backdropFilter:"blur(24px)"}}>
+            <div className='absolute top-0 right-0 h-[40px] w-[40px] flex justify-center items-center bg-[--foreground] print-hide rounded-[0_0_0_10px]' onClick={()=>{onButtonClick()}}>
             <ArrowDown className='text-[--background]' />
 
             </div>
